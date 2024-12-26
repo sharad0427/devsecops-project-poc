@@ -37,3 +37,7 @@ terraform/mega-project-key1
 terraform/mega-project-key1.pub
 terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.82.2/linux_amd64/LICENSE.txt
 terraform/.terraform/providers/registry.terraform.io/hashicorp/aws/5.82.2/linux_amd64/terraform-provider-aws_v5.82.2_x5
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
