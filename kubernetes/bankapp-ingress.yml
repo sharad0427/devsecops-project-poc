@@ -6,6 +6,10 @@ metadata:
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
+  tls:
+  - hosts:
+    - megaproject.amitabh.engineer
+    secretName: letsencrypt-prod
   ingressClassName: nginx
   rules:
   - host: "megaproject.amitabh.engineer"
