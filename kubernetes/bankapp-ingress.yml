@@ -8,11 +8,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - megaproject.letsdeployit.com 
+    - megaproject.letsdeployit.com
     secretName: letsencrypt-prod
   ingressClassName: nginx
   rules:
-  - host: "megaproject.letsdeployit.com "
+  - host: "megaproject.letsdeployit.com"
     http:
       paths:
       - path: /
