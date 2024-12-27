@@ -9,7 +9,7 @@ spec:
   tls:
   - hosts:
     - megaproject.letsdeployit.com
-    secretName: letsencrypt-prod
+    secretName: bankapp-tls-secret
   ingressClassName: nginx
   rules:
   - host: "megaproject.letsdeployit.com"
