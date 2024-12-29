@@ -46,13 +46,13 @@ variable "aws_instance_volume_type" {
 variable "aws_key_pair_name" {
   description = "The name of the SSH key pair to use for accessing the EC2 instance."
   type        = string
-  default     = "mega-project-key1"
+  default     = "mega-project-key"
 }
 
 variable "aws_key_pair_public_key" {
   description = "The path to the public key file for the SSH key pair."
   type        = string
-  default     = "mega-project-key1.pub"
+  default     = "mega-project-key.pub"
 }
 
 # Security group variables
