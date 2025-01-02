@@ -32,8 +32,9 @@ spec:
               name: bankapp-config
               key: MYSQL_DATABASE
         volumeMounts:
-        - name: mysql-data
+        - name: mysql-pv-storage
           mountPath: /var/lib/mysql
+          subPath: mysql-data  # Optional: Ensure a subdirectory is used for better volume organization
         resources:
           limits:
             memory: "512Mi"
@@ -60,5 +61,6 @@ spec:
           initialDelaySeconds: 30
           periodSeconds: 5
       volumes:
-      - name: mysql-data
-        emptyDir: {}
+      - name: mysql-pv-storage
+        persistentVolumeClaim:
+          claimName: mysql-pvc
