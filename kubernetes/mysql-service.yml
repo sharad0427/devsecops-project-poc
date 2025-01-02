@@ -6,7 +6,7 @@ metadata:
   labels:
     app: mysql
 spec:
-  # clusterIP: None
+  type: ClusterIP  # Keeps it internal to the cluster
   selector:
     app: mysql
   ports:
