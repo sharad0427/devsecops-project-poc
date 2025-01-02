@@ -9,7 +9,6 @@ spec:
   # clusterIP: None
   selector:
     app: mysql
-  type: ClusterIP
   ports:
   - protocol: TCP
     port: 3306
