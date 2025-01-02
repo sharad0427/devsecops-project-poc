@@ -3,8 +3,6 @@ apiVersion: cert-manager.io/v1
 
 metadata:
   name: letsencrypt-prod
-  namespace: cert-manager
-
 spec:
   acme:
     # The ACME server URL
@@ -13,7 +11,7 @@ spec:
     email: shubhamnath5@gmail.com
     # Name of a secret used to store the ACME account private key
     privateKeySecretRef:
-      name: letsencrypt-prod
+      name: letsencrypt-prod-key
     # Enable the HTTP-01 challenge provider
     solvers:
     - http01:
