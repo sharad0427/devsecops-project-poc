@@ -6,11 +6,11 @@ metadata:
   labels:
     app: bankapp
 spec:
-  # type: NodePort
+  type: LoadBalancer
   selector:
-    app: bankapp
+    app: bankapp-deploy
   ports:
   - protocol: TCP
-    port: 8080
+    port: 80
     targetPort: 8080
-    # nodePort: 30080 # Exposes the app on this port of the host
+      #nodePort: 30080
