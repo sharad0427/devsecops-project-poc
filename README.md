@@ -730,7 +730,8 @@ kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.adm
 
 Now that **Prometheus** and **Grafana** are set up, you can use **Grafana** to monitor your application metrics. Grafana will pull metrics from **Prometheus**, and you can create dashboards to visualize various aspects of your application’s performance.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656810884/a7f141f3-f432-4f37-a140-56a3f8b1ae1d.png align="center")
+![image](https://github.com/user-attachments/assets/76e48681-ee88-4c10-a231-60ecbeab836c)
+
 
 ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656821912/60414879-2902-4fbe-9347-602a1ae17c61.png align="center")
 
