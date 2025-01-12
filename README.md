@@ -1,8 +1,9 @@
+# DevSecOps Mega Project-Springboot Bankapp
+
 ## End-to-End Bank Application Deployment using DevSecOps on AWS EKS
 - This is a multi-tier bank an application written in Java (Springboot).
 
-# DevSecOps Mega Project-Springboot Bankapp
-
+  
 ## Step 1: Create an IAM User with Administrator Permissions
 
 1. **Login to AWS Console:** Open the [AWS Management Console](https://aws.amazon.com/console/).
