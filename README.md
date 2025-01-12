@@ -301,7 +301,8 @@ With the NodePort and the worker node’s public IP, access the ArgoCD web UI:
 http://<worker-node-public-ip>:<node-port>
 ```
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657244349/6ecfc147-ed39-42af-9da9-3338e9247e32.png align="center")
+![image](https://github.com/user-attachments/assets/32222a1f-3aea-450b-a7e5-0f44b34702ed)
+
 
 For the initial login:
 
@@ -498,9 +499,11 @@ Once installed, Cert-Manager will be responsible for automatically issuing and r
 
 Click **Create** to finish the setup and deploy your application.
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657176381/ad06f5f6-5e10-47aa-bdb9-d7d0b1428bc7.png align="center")
+![image](https://github.com/user-attachments/assets/c264ccbc-9ba7-40e1-8925-47e48ec65b26)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657184786/c8b14bce-9156-4130-baf7-820c7374f62b.png align="center")
+
+![image](https://github.com/user-attachments/assets/dbabd258-d314-4648-b17a-f17bdb1ec55d)
+
 
 ---
 
@@ -520,15 +523,18 @@ In this step, we will walk through two options to expose your application to the
     
 2. Copy the **External-IP** from the output and create a **CNAME record** on your domain. For example, use [`amitabh.letsdeployit.com`](http://amitabh.letsdeployit.com) as your domain, and replace it in the `bankapp-ingress.yml` file with your domain name, take a reference of below image:
     
-    1. ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657070372/37ab82ae-b8b9-422b-a8d7-bed9207ef3ae.png align="center")
+    1. ![image](https://github.com/user-attachments/assets/117c42ad-025c-4ad7-af88-064ddbfc86b4)
+
         
 3. After updating the `bankapp-ingress.yml` file, sync the application in **ArgoCD**.
     
 4. Once synchronized, open your browser and access the application via your domain (e.g., [`amitabh.letsdeployit.com`](http://amitabh.letsdeployit.com)).
     
-    1. ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657112933/ae195f19-bf14-4206-95a5-2adc7db185a2.png align="center")
+    1. ![image](https://github.com/user-attachments/assets/8c7076dc-2908-45a9-a920-86ff281e2a4b)
+
         
-    2. ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657127540/cb10b263-9510-4b0e-90db-fe20896475ec.png align="center")
+    2. ![image](https://github.com/user-attachments/assets/ab5e3652-5296-4744-bc38-1ec2fd7a32a7)
+
         
 
 ---
@@ -557,9 +563,11 @@ If you don't have a domain, you can expose the service using **NodePort**.
     
 4. Now, access your application in the browser using the URL format: `http://<worker_node_public_ip>:<nodeport>`.
     
-    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657014926/63288af0-499f-4a3b-80c3-9c1b37581923.png align="center")
+    ![image](https://github.com/user-attachments/assets/1414aff3-7137-4c3c-b043-f63d964eee54)
+
     
-    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736657020082/8061ad1e-b82b-4f8d-90b4-eaee8b1bcc61.png align="center")
+    ![image](https://github.com/user-attachments/assets/bc9fff7e-5aee-40f5-963f-5683e9dc1a8f)
+
     
 
 ---
@@ -639,22 +647,27 @@ Once everything is set up, trigger the pipeline build by selecting **Build with 
 
 * Check the **Docker Hub** for the tagged images after the build.
     
-* Ensure that the **bankapp-deployment** is using the correct image tag from **Docker Hub**. take a reference of below imag
+* Ensure that the **bankapp-deployment** is using the correct image tag from **Docker Hub**. take a reference of below image
     
-    ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656923830/1c82793f-53f7-4ece-9102-6abeec3a1985.png align="center")
+    ![image](https://github.com/user-attachments/assets/4600f18f-c57d-4e40-b517-4d9507f09a0b)
+
     
-    e
     
-* ![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656886533/34dccd72-119c-47fb-a5a6-e2a3383e588a.png align="center")
+* ![image](https://github.com/user-attachments/assets/c1db5a21-1f22-49c6-b674-5604efb8dc2f)
+
     
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656870272/8735e68f-72e2-41d2-bfb4-9f55a82e0955.png align="center")
+![image](https://github.com/user-attachments/assets/cfd5988d-471d-481d-9bf9-f0581c4b7d98)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656924749/0b3cb4e2-db19-4dea-8b9a-900166fd217e.png align="center")
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656932917/74ea8d07-e446-4eac-8e99-b1f1c218dec6.png align="center")
+![image](https://github.com/user-attachments/assets/b0c815ec-9960-443d-95e7-69511b462ee6)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656940881/d867c704-565e-4fe2-a304-cbf200c28f6d.png align="center")
+
+![image](https://github.com/user-attachments/assets/4135926b-b89b-4202-813c-3ecf387e0475)
+
+
+![image](https://github.com/user-attachments/assets/fe09aa64-a777-4a8e-9da4-b999a3734119)
+
 
 ---
 
@@ -733,11 +746,14 @@ Now that **Prometheus** and **Grafana** are set up, you can use **Grafana** to m
 ![image](https://github.com/user-attachments/assets/76e48681-ee88-4c10-a231-60ecbeab836c)
 
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656821912/60414879-2902-4fbe-9347-602a1ae17c61.png align="center")
+![image](https://github.com/user-attachments/assets/0bea99b0-1316-4076-b823-c4dc5fb4a180)
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656826788/1149adc1-00d3-499f-8900-c71ea3d3e1d5.png align="center")
 
-![](https://cdn.hashnode.com/res/hashnode/image/upload/v1736656840561/05dd2294-0eec-4a4b-b79f-5ad7fc15b56d.png align="center")
+![image](https://github.com/user-attachments/assets/c06f10e7-9a4f-420b-8586-c172a44b1a96)
+
+
+![image](https://github.com/user-attachments/assets/e0fb4173-00aa-479d-b1ad-9d36c42c7ee4)
+
 
 ---
 
