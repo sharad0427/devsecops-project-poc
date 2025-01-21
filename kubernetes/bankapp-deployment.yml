@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bankapp
-        image: snehcreate/bankappv2
+        image: snehcreate/bankappv3
         ports:
         - containerPort: 8080
         resources:
