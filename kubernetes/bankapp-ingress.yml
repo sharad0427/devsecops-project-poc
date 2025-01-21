@@ -16,7 +16,7 @@ spec:
     secretName: bankapp-tls-secret
   ingressClassName: nginx
   rules:
-  - host: "bankapp.snehaws.com"
+  - host: bankapp.snehaws.com
     http:
       paths:
       - path: /
