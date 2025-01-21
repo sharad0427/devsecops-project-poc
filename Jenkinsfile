@@ -1,7 +1,12 @@
+@Library('Shared') _  // Referencing your shared library
+
 pipeline {
     agent any
     environment {
         SONAR_HOME = tool "Sonar"
+        DOCKER_IMAGE = "bankapp"
+        GIT_REPO = "https://github.com/pundir8372/DevOps-mega-project.git"
+        GIT_BRANCH = "DevSecOps"
     }
     stages {
         stage("Clean Workspace") {
@@ -11,60 +16,124 @@ pipeline {
         }
         stage("Code Clone") {
             steps {
-                git url: "https://github.com/pundir8372/DevOps-mega-project.git", branch: "project"
+                script {
+                    code_checkout(GIT_REPO, GIT_BRANCH)
+                }
             }
         }
         stage("SonarQube Quality Analysis") {
             steps {
-                withSonarQubeEnv("Sonar") {
-                    sh "$SONAR_HOME/bin/sonar-scanner -Dsonar.projectName=bankapp -Dsonar.projectKey=bankapp -Dsonar.java.binaries=. -X"
-                }
+                sonarqube_analysis('Sonar', 'bankapp', 'bankapp')
             }
         }
         stage("OWASP Dependency Check") {
             steps {
-                dependencyCheck additionalArguments: "--scan ./" , odcInstallation: 'dc'
-                dependencyCheckPublisher pattern: "**/dependency-check-report.xml"
+                owasp_dependency()
             }
         }
         stage("Sonar Quality Gate Scan") {
             steps {
-                timeout(time: 3, unit: "MINUTES") {
-                    waitForQualityGate abortPipeline: false
-                }
+                sonarqube_code_quality()
             }
         }
         stage("Trivy File System Scan") {
             steps {
-                sh "trivy fs --format table -o table-report.html ."
+                trivy_scan()
             }
         }
         stage("Docker Build") {
             steps {
-                sh "docker build -t bankapp:latest ."
+                docker_build('bankapp', 'latest', 'dockerHubUser')
             }
         }
         stage("Push to Docker Hub") {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'dockerHubCred', passwordVariable: 'dockerHubPass', usernameVariable: 'dockerHubUser')]) {
-                    sh " docker login -u ${dockerHubUser} -p ${dockerHubPass}"
-                    sh  "docker tag bankapp ${dockerHubUser}/bankapp:latest"
-                    sh    "docker push ${dockerHubUser}/bankapp:latest"
-    
-                }
+                docker_push('bankapp', 'latest', 'pundirsahil')
             }
         }
-        
     }
     post {
-        always {
-            cleanWs()
-        }
         success {
-            echo "Pipeline executed successfully!"
+            echo "Pipeline completed successfully!"
+            emailext (
+                subject: "SUCCESS: Jenkins Pipeline for ${DOCKER_IMAGE}",
+                body: """
+                    <div style="font-family: Arial, sans-serif; padding: 20px; border: 2px solid #4CAF50; border-radius: 10px;">
+                        <h2 style="color: #4CAF50;">🎉 Pipeline Execution: SUCCESS 🎉</h2>
+                        <p style="font-size: 16px; color: #333;">
+                            Hello Team,
+                        </p>
+                        <p style="font-size: 16px; color: #333;">
+                            The Jenkins pipeline for <strong style="color: #4CAF50;">${DOCKER_IMAGE}</strong> completed <strong style="color: #4CAF50;">successfully</strong>!
+                        </p>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd;">Details</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd;">Values</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Git Repository</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">${GIT_REPO}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Branch</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">${GIT_BRANCH}</td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 16px; color: #333; margin-top: 20px;">
+                            Visit <a href="${BUILD_URL}" style="color: #4CAF50;">Pipeline Logs</a> for more details.
+                        </p>
+                        <p style="font-size: 16px; color: #333; margin-top: 20px;">
+                            Thanks,<br>
+                            <strong>Jenkins</strong>
+                        </p>
+                    </div>
+                """,
+                to: "pundirsahil320@gmail.com",
+                from: "jenkins@example.com",
+                mimeType: 'text/html'
+            )
         }
         failure {
             echo "Pipeline failed. Please check the logs."
+            emailext (
+                subject: "FAILURE: Jenkins Pipeline for ${DOCKER_IMAGE}",
+                body: """
+                    <div style="font-family: Arial, sans-serif; padding: 20px; border: 2px solid #F44336; border-radius: 10px;">
+                        <h2 style="color: #F44336;">🚨 Pipeline Execution: FAILURE 🚨</h2>
+                        <p style="font-size: 16px; color: #333;">
+                            Hello Team,
+                        </p>
+                        <p style="font-size: 16px; color: #333;">
+                            Unfortunately, the Jenkins pipeline for <strong style="color: #F44336;">${DOCKER_IMAGE}</strong> has <strong style="color: #F44336;">failed</strong>.
+                        </p>
+                        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+                            <tr style="background-color: #f2f2f2;">
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd;">Details</th>
+                                <th style="text-align: left; padding: 8px; border: 1px solid #ddd;">Values</th>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Git Repository</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">${GIT_REPO}</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 8px; border: 1px solid #ddd;">Branch</td>
+                                <td style="padding: 8px; border: 1px solid #ddd;">${GIT_BRANCH}</td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 16px; color: #333; margin-top: 20px;">
+                            Visit <a href="${BUILD_URL}" style="color: #F44336;">Pipeline Logs</a> for more details.
+                        </p>
+                        <p style="font-size: 16px; color: #333; margin-top: 20px;">
+                            Thanks,<br>
+                            <strong>Jenkins</strong>
+                        </p>
+                    </div>
+                """,
+                to: "pundirsahil320@gmail.com",
+                from: "jenkins@example.com",
+                mimeType: 'text/html'
+            )
         }
     }
 }
