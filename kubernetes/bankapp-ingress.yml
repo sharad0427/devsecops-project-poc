@@ -20,14 +20,14 @@ spec:
     http:
       paths:
       - path: /?(.*)
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: bankapp-service
             port:
               number: 8080
       - path: /nginx
-        pathType: Prefix
+        pathType: ImplementationSpecific
         backend:
           service:
             name: nginx-service
