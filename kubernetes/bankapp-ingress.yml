@@ -4,7 +4,6 @@ metadata:
   name: bankapp-ingress
   namespace: bankapp-namespace
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Force HTTPS
     cert-manager.io/cluster-issuer: letsencrypt-prod  # Use Let's Encrypt
@@ -20,7 +19,7 @@ spec:
   - host: "bankapp.snehaws.com"
     http:
       paths:
-      - path: /
+      - path: /?(.*)
         pathType: Prefix
         backend:
           service:
