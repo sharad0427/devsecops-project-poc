@@ -22,7 +22,7 @@ spec:
   - host: bankapp.snehaws.com
     http:
       paths:
-      - path: /login
+      - path: /
         pathType: Prefix
         backend:
           service:
