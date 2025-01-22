@@ -8,7 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Force HTTPS
     cert-manager.io/cluster-issuer: letsencrypt-prod  # Use Let's Encrypt
     nginx.ingress.kubernetes.io/proxy-set-headers: "ingress-headers"
-    #nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /login
     nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/session-cookie-name: bankapp_session
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
@@ -22,7 +22,7 @@ spec:
   - host: bankapp.snehaws.com
     http:
       paths:
-      - path: /
+      - path: /login
         pathType: Prefix
         backend:
           service:
