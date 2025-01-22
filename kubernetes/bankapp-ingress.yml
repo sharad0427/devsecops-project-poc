@@ -29,13 +29,6 @@ spec:
             name: bankapp-service
             port:
               number: 8080
-      - path: /dashboard
-        pathType: Prefix
-        backend:
-          service:
-            name: bankapp-service
-            port:
-              number: 8080
       - path: /nginx
         pathType: Prefix
         backend:
