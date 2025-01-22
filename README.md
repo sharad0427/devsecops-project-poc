@@ -786,6 +786,8 @@ After mapping the domain to the application, there may be issues with user login
 ### Resolved:
 
 https://github.com/user-attachments/assets/4baf7031-5744-40c5-8035-10e4d1cc4457
+
+
 ---
 
 ### 2\. **Add the Security (Sec) Part of DevSecOps to the Project**
