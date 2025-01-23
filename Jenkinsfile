@@ -1,12 +1,14 @@
 @Library('Shared') _  // Referencing your shared library
+parameters {
+    string(name: 'GIT_REPO', defaultValue: 'https://github.com/pundir8372/DevOps-mega-project.git', description: 'Git repository URL')
+    string(name: 'GIT_BRANCH', defaultValue: 'DevSecOps', description: 'Git branch name')
+}
 
 pipeline {
     agent any
     environment {
         SONAR_HOME = tool "Sonar"
         DOCKER_IMAGE = "bankapp"
-        GIT_REPO = "https://github.com/pundir8372/DevOps-mega-project.git"
-        GIT_BRANCH = "DevSecOps"
     }
     stages {
         stage("Clean Workspace") {
@@ -17,7 +19,7 @@ pipeline {
         stage("Code Clone") {
             steps {
                 script {
-                    code_checkout(GIT_REPO, GIT_BRANCH)
+                    code_checkout(params.GIT_REPO, params.GIT_BRANCH)
                 }
             }
         }
