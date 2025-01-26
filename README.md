@@ -783,6 +783,11 @@ We are looking for contributions in the following areas:
 
 After mapping the domain to the application, there may be issues with user login. If you have experience in troubleshooting or resolving login issues post-domain mapping, we encourage you to contribute a solution. Possible areas for improvement include authentication, DNS configurations, or session management.
 
+### Resolved:
+
+https://github.com/user-attachments/assets/4baf7031-5744-40c5-8035-10e4d1cc4457
+
+
 ---
 
 ### 2\. **Add the Security (Sec) Part of DevSecOps to the Project**
