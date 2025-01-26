@@ -4,10 +4,13 @@ metadata:
   name: bankapp-ingress
   namespace: bankapp-namespace
   annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
     nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Force HTTPS
     cert-manager.io/cluster-issuer: letsencrypt-prod  # Use Let's Encrypt
+    nginx.ingress.kubernetes.io/use-regex: "true"  # Enable regex for path matching
+    nginx.ingress.kubernetes.io/affinity: "cookie"  # Enable sticky sessions
+    nginx.ingress.kubernetes.io/session-cookie-name: "BANKAPP_SESSION"  # Custom session cookie name
+    nginx.ingress.kubernetes.io/session-cookie-path: "/"  # Path for session cookie
 spec:
   tls:
   - hosts:
