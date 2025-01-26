@@ -22,7 +22,7 @@ spec:
   - host: megaproject.letsdeployit.com
     http:
       paths:
-      - path: /
+      - path: /login
         pathType: Prefix
         backend:
           service:
