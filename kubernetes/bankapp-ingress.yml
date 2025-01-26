@@ -14,11 +14,11 @@ metadata:
 spec:
   tls:
   - hosts:
-    - amitabh.letsdeployit.com
+    - megaproject.letsdeployit.com
     secretName: bankapp-tls-secret
   ingressClassName: nginx
   rules:
-  - host: "amitabh.letsdeployit.com"
+  - host: "megaproject.letsdeployit.com"
     http:
       paths:
       - path: /
