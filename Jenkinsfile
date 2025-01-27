@@ -49,7 +49,7 @@ pipeline {
         }
         stage("Push to Docker Hub") {
             steps {
-                docker_push('bankapp', '${params.DOCKER_TAG}', 'amitabhdevops')
+                docker_push("bankapp", "${params.DOCKER_TAG}", "amitabhdevops")
             }
         }
     }
