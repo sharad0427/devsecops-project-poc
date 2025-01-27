@@ -94,7 +94,8 @@ pipeline {
                 """,
                 to: "amitabhdevops2024@gmail.com",
                 from: "jenkins@example.com",
-                mimeType: 'text/html'
+                mimeType: 'text/html',
+                attachmentsPattern : '${reportFile}'
             )
         }
         failure {
@@ -135,7 +136,8 @@ pipeline {
                 """,
                 to: "amitabhdevops2024@gmail.com",
                 from: "jenkins@example.com",
-                mimeType: 'text/html'
+                mimeType: 'text/html',
+                attachmentsPattern : '${reportFile}'
             )
         }
     }
