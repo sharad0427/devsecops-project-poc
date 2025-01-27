@@ -8,6 +8,8 @@ pipeline {
     environment {
         SONAR_HOME = tool "Sonar"
         DOCKER_IMAGE = "bankapp"
+        GIT_REPO = "https://github.com/Amitabh-DevOps/DevOps-mega-project.git"
+        GIT_BRANCH = "project"
     }
     stages {
         stage("Clean Workspace") {
