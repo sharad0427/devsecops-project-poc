@@ -2,7 +2,7 @@
 parameters {
     string(name: 'GIT_REPO', defaultValue: 'https://github.com/Amitabh-DevOps/DevOps-mega-project.git', description: 'Git repository URL')
     string(name: 'GIT_BRANCH', defaultValue: 'project', description: 'Git branch name')
-    string(name: 'DOCKER_TAG', defaultValue: '', description: 'Setting docker image for latest push')
+    string(name: 'DOCKER_TAG', defaultValue: 'v1', description: 'Setting docker image for latest push')
 }
 
 pipeline {
