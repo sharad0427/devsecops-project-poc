@@ -1,4 +1,4 @@
-def code_checkout(String url, String branch) {
+def call(String url, String branch) {
     try {
         git url: url, branch: branch
     } catch (Exception e) {
