@@ -95,7 +95,7 @@ pipeline {
                 to: "amitabhdevops2024@gmail.com",
                 from: "jenkins@example.com",
                 mimeType: 'text/html',
-                attachmentsPattern : '${reportFile}'
+                attachmentsPattern: '**/table-report.html'  // This will pick up the report from the workspace
             )
         }
         failure {
@@ -137,7 +137,7 @@ pipeline {
                 to: "amitabhdevops2024@gmail.com",
                 from: "jenkins@example.com",
                 mimeType: 'text/html',
-                attachmentsPattern : '${reportFile}'
+                attachmentsPattern: '**/table-report.html'  // This will pick up the report from the workspace
             )
         }
     }
