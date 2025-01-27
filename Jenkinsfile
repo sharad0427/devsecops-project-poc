@@ -1,7 +1,5 @@
 @Library('Shared') _  // Referencing your shared library
 parameters {
-    string(name: 'GIT_REPO', defaultValue: 'https://github.com/Amitabh-DevOps/DevOps-mega-project.git', description: 'Git repository URL')
-    string(name: 'GIT_BRANCH', defaultValue: 'project', description: 'Git branch name')
     string(name: 'DOCKER_TAG', defaultValue: 'v1', description: 'Setting docker image for latest push')
 }
 
@@ -10,6 +8,8 @@ pipeline {
     environment {
         SONAR_HOME = tool "Sonar"
         DOCKER_IMAGE = "bankapp"
+        GIT_REPO = "https://github.com/Amitabh-DevOps/DevOps-mega-project.git"
+        GIT_BRANCH = "project"
     }
     stages {
         stage("Clean Workspace") {
@@ -20,7 +20,7 @@ pipeline {
         stage("Code Clone") {
             steps {
                 script {
-                    code_checkout(params.GIT_REPO, params.GIT_BRANCH)
+                    code_checkout("${env.GIT_REPO}", "${env.GIT_BRANCH}")
                 }
             }
         }
