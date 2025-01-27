@@ -20,7 +20,7 @@ pipeline {
         stage("Code Clone") {
             steps {
                 script {
-                    code_checkout("${env.GIT_REPO}", "${env.GIT_BRANCH}")
+                    code_checkout("${GIT_REPO}", "${GIT_BRANCH}")
                 }
             }
         }
