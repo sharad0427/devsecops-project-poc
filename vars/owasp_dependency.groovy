@@ -1,11 +1,8 @@
-def call() {
+def call(cve) {
     // Define the API key and NVD URL
-    def apiKey = env.NVD_API_KEY  // Ensure you have this API key set in Jenkins environment variables
-    def nvdUrl = "https://api.nvd.nist.gov/vuln/detail"
+    def apiKey = env.NVD_API_KEY  // Ensure you have this API key set in Jenkins environment
+    def nvdUrl = "https://services.nvd.nist.gov/rest/json/cve/1.0"
     
-    // CVE ID to query
-    def cve = 'CVE-2021-44228'  // Replace with the CVE you're interested in
-
     // Fetch vulnerability data from the NVD API
     def response = sh(script: """
         curl -X GET "${nvdUrl}/${cve}?apiKey=${apiKey}" -H "Accept: application/json"
