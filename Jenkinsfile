@@ -29,11 +29,11 @@ pipeline {
                 sonarqube_analysis('Sonar', 'bankapp', 'bankapp')
             }
         }
-        // stage("OWASP Dependency Check") {
-        //     steps {
-        //         owasp_dependency()
-        //     }
-        // }
+        stage("OWASP Dependency Check") {
+            steps {
+                owasp_dependency()
+            }
+        }
         stage("Sonar Quality Gate Scan") {
             steps {
                 sonarqube_code_quality()
