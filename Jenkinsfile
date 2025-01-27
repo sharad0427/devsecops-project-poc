@@ -31,7 +31,7 @@ pipeline {
         }
         stage("OWASP Dependency Check") {
             steps {
-                owasp_dependency()
+                owasp_dependency('CVE-2021-44228')
             }
         }
         stage("Sonar Quality Gate Scan") {
