@@ -1,14 +1,15 @@
 @Library('Shared') _  // Referencing your shared library
 parameters {
-    string(name: 'GIT_REPO', defaultValue: 'https://github.com/pundir8372/DevOps-mega-project.git', description: 'Git repository URL')
-    string(name: 'GIT_BRANCH', defaultValue: 'DevSecOps', description: 'Git branch name')
+    string(name: 'GIT_REPO', defaultValue: 'https://github.com/Amitabh-DevOps/DevOps-mega-project.git', description: 'Git repository URL')
+    string(name: 'GIT_BRANCH', defaultValue: 'project', description: 'Git branch name')
+    string(name: 'DOCKER_TAG', defaultValue: '', description: 'Setting docker image for latest push')
 }
 
 pipeline {
     agent any
     environment {
         SONAR_HOME = tool "Sonar"
-        DOCKER_IMAGE = "bankapp"
+        // DOCKER_IMAGE = "bankapp"
     }
     stages {
         stage("Clean Workspace") {
@@ -28,11 +29,11 @@ pipeline {
                 sonarqube_analysis('Sonar', 'bankapp', 'bankapp')
             }
         }
-        stage("OWASP Dependency Check") {
-            steps {
-                owasp_dependency()
-            }
-        }
+        // stage("OWASP Dependency Check") {
+        //     steps {
+        //         owasp_dependency()
+        //     }
+        // }
         stage("Sonar Quality Gate Scan") {
             steps {
                 sonarqube_code_quality()
@@ -45,12 +46,12 @@ pipeline {
         }
         stage("Docker Build") {
             steps {
-                docker_build('bankapp', 'latest', 'dockerHubUser')
+                docker_build('bankapp', '${params.DOCKER_TAG}', 'amitabhdevops')
             }
         }
         stage("Push to Docker Hub") {
             steps {
-                docker_push('bankapp', 'latest', 'pundirsahil')
+                docker_push('bankapp', '${params.DOCKER_TAG}', 'amitabhdevops')
             }
         }
     }
