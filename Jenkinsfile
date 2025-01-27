@@ -9,7 +9,7 @@ pipeline {
     agent any
     environment {
         SONAR_HOME = tool "Sonar"
-        // DOCKER_IMAGE = "bankapp"
+        DOCKER_IMAGE = "bankapp"
     }
     stages {
         stage("Clean Workspace") {
