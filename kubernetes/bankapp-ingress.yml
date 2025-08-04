@@ -5,28 +5,33 @@ metadata:
   namespace: bankapp-namespace
   annotations:
     nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-    nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Disable forced HTTPS
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"  # Force HTTPS
+    nginx.ingress.kubernetes.io/proxy-set-headers: "ingress-headers"
     nginx.ingress.kubernetes.io/rewrite-target: /
-    nginx.ingress.kubernetes.io/affinity: "cookie"
+    nginx.ingress.kubernetes.io/affinity: cookie
     nginx.ingress.kubernetes.io/session-cookie-name: bankapp_session
     nginx.ingress.kubernetes.io/session-cookie-hash: sha1
 spec:
+  tls:
+  - hosts:
+    - bankapp.local
+    secretName: bankapp-tls-secret
   ingressClassName: nginx
   rules:
-    - host: bankapp.local
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: bankapp-service
-                port:
-                  number: 8080
-          - path: /nginx
-            pathType: Prefix
-            backend:
-              service:
-                name: nginx-service
-                port:
-                  number: 80
+  - host: bankapp.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: bankapp-service
+            port:
+              number: 8080
+      - path: /nginx
+        pathType: Prefix
+        backend:
+          service:
+            name: nginx-service
+            port:
+              number: 80     
