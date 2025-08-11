@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: bankapp
-        image: sharad0427/bankapp:v1
+        image: placeholder/image:tag
         ports:
         - containerPort: 8080
         resources:
@@ -48,6 +48,7 @@ spec:
             secretKeyRef:
               name: mysql-secret
               key: SPRING_DATASOURCE_PASSWORD
+
 
 
 
